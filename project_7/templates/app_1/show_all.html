@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h1 align="center">Вся наша мебель</h1>
+<h1 align="center">Вся наша техника</h1>
 
 {% if computerisation_technicals %}
 <div class="row justify-content-center">
@@ -17,7 +17,7 @@
           <tbody>
             {% for computerisation_technical in computerisation_technicals %}
                 <tr>
-                    <td scope="row"><a href={{mebel.link}}>{{computerisation_technical.price}}</a></td>
+                    <td scope="row"><a href={{computerisation_technical.link}}>{{computerisation_technical.price}}</a></td>
                     <td>{{computerisation_technical.description}}</td>
                 </tr>
             {% endfor %}
