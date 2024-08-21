@@ -5,6 +5,7 @@
 import requests
 from bs4 import BeautifulSoup
 import postgres_data_sql_client
+from datetime import datetime
 
 
 class Parser:
@@ -52,6 +53,7 @@ class Parser:
         connection = postgres_data_sql_client.get_connection()
         postgres_data_sql_client.create_computerisation_technical_table(connection)
         for item in computerisation_technical_items:
+            item_parse_time = datetime.now()
             postgres_data_sql_client.insert(connection, item[0], item[1], item[2])
 
     def run(self):

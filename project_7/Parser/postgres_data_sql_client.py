@@ -26,7 +26,8 @@ def create_computerisation_technical_table(conn):
                 id serial PRIMARY KEY, 
                 link text, 
                 price integer, 
-                description text
+                description text,
+                parse_datetime TimeStamp not null default current_timestamp
             )
         """
     )

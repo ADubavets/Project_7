@@ -17,7 +17,9 @@
           <tbody>
             {% for computerisation_technical in computerisation_technicals %}
                 <tr>
-                    <td scope="row"><a href={{computerisation_technical.link}}>{{computerisation_technical.price}}</a></td>
+                    <td scope="row">
+                        <a href={{computerisation_technical.link}}>{{computerisation_technical.price}}</a>
+                    </td>
                     <td>{{computerisation_technical.description}}</td>
                 </tr>
             {% endfor %}
