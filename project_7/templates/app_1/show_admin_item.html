@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 align="center"><b>Админ. </b>Вся наша техника</h1>
+
+{% if computerisation_technicals %}
+<div class="row justify-content-center">
+    <div class="col-auto">
+        <table class="table table-responsive">
+            <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Дата</th>
+                <th scope="col">Ссылка</th>
+                <th scope="col">Цена</th>
+                <th scope="col">Описание</th>
+                <th scope="col">Редактирование</th>
+                <th scope="col">Удаление</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for computerisation_technical in computerisation_technicals %}
+          <tr>
+              <td><b>{{computerisation_technical.id}}</b></td>
+              <td>{{computerisation_technical.parse_datetime}}</td>
+              <td scope="row"><a href={{computerisation_technical.link}}>Прямая ссылка</a></td>
+              <td>{{computerisation_technical.price}}</td>
+              <td>{{computerisation_technical.description}}</td>
+              <td>
+                  <form action="{% url 'update_item' computerisation_technical.id %}" method="POST">
+                      {% csrf_token %}
+                      {{form.as_p}}
+                      <button type="submit" class="btn btn-success">Save</button>
+                  </form>
+              </td>
+              <td>
+                  <form action="{% url 'delete_item' computerisation_technical.id %}">
+                      {% csrf_token %}
+                      <button type="submit" class="btn btn-danger">Delete</button>
+                  </form>
+              </td>
+          </tr>
+          {% endfor %}
+
+          </tbody>
+        </table>
+    </div>
+</div>
+{% else %}
+    <h2>К сожалению продаж нет</h2>
+{% endif %}
+
+{% endblock %}
