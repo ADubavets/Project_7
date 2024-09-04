@@ -5,31 +5,50 @@
 <h1 align="center">Вся наша техника</h1>
 
 {% if computerisation_technicals %}
+
 <div class="row justify-content-center">
     <div class="col-auto">
         <table class="table table-responsive">
-          <thead>
+            <thead>
             <tr>
-              <th scope="col">Цена</th>
-              <th scope="col">Описание</th>
+                <th scope="col">Цена</th>
+                <th scope="col">Описание</th>
             </tr>
-          </thead>
-          <tbody>
+            </thead>
+            <tbody>
             {% for computerisation_technical in computerisation_technicals %}
-                <tr>
-                    <td scope="row">
-                        <a href={{computerisation_technical.link}}>{{computerisation_technical.price}}</a>
-                    </td>
-                    <td>{{computerisation_technical.description}}</td>
-                </tr>
+            <tr>
+                <td scope="row">
+                    <a href={{computerisation_technical.link}}>{{computerisation_technical.price}}</a>
+                </td>
+                <td>{{computerisation_technical.description}}</td>
+            </tr>
             {% endfor %}
 
-          </tbody>
+            <div class="pagination">
+                <span class="step-links">
+                    {% if computerisation_technicals.has_previous %}
+                        <a href="?page=1">&laquo; first</a>
+                        <a href="?page={{ computerisation_technicals.previous_page_number }}">previous</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Page {{ computerisation_technicals.number }} of {{ computerisation_technicals.paginator.num_pages }}.
+                    </span>
+
+                    {% if computerisation_technicals.has_next %}
+                        <a href="?page={{ computerisation_technicals.next_page_number }}">next</a>
+                        <a href="?page={{ computerisation_technicals.paginator.num_pages }}">last &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+
+            </tbody>
         </table>
     </div>
 </div>
 {% else %}
-    <h2>К сожалению продаж нет</h2>
+<h2>К сожалению продаж нет</h2>
 {% endif %}
 
 {% endblock %}
